@@ -6,7 +6,7 @@ from google.cloud import storage
 import requests
 from ..models import DatasetEntry
 from ..extensions import db
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcp-creds.json"
+#os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gcp-creds.json"
 
 upload_bp = Blueprint('upload', __name__)
 
