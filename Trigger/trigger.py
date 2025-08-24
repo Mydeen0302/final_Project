@@ -2,7 +2,7 @@ import time
 import requests
 from requests.auth import HTTPBasicAuth
 
-AIRFLOW_API_BASE = "http://airflow-airflow-webserver-1:8080/api/v1"
+AIRFLOW_API_BASE = "http://airflow-airflow-webserver-1:8082/api/v1"
 DAG_ID = "thirdflow"
 FLASK_TODO_URL = "http://backend:5000/todo"
 USERNAME = "airflow"
