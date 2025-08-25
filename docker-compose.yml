@@ -30,5 +30,6 @@ networks:
   default:
     external:
       name: my-shared-network
+      external: true
 volumes:
   frontend_node_modules:
