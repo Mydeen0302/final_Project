@@ -6,6 +6,9 @@ services:
     environment:
       - FLASK_ENV=development
       - FLASK_APP=run.py
+      - GOOGLE_APPLICATION_CREDENTIALS=/gcp/gcp-key.json   
+    volumes:
+      - ./gcp-key.json:/gcp/gcp-key.json:ro      
 
   frontend:
     build: ./frontend/frontend
