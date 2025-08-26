@@ -1,6 +1,10 @@
 import time
 import requests
 from requests.auth import HTTPBasicAuth
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 AIRFLOW_API_BASE = "http://airflow-airflow-webserver-1:8082/api/v1"
 DAG_ID = "thirdflow"
@@ -20,29 +24,29 @@ def is_there_any_unprocessed_data():
             return False
         return True
     except Exception as e:
-        print(f"Error checking unprocessed data: {e}")
+        logging.error(f"Error checking unprocessed data: {e}")
         return False
 
 def trigger_dag():
     url = f"{AIRFLOW_API_BASE}/dags/{DAG_ID}/dagRuns"
     try:
         response = requests.post(url, auth=HTTPBasicAuth(USERNAME, PASSWORD), json={})
-        print(response.status_code,response.text)
-        if response.status_code != 200:
-            print(f"Failed to trigger DAG: {response.status_code} - {response.text}")
+        logging.info(f"Trigger DAG response: {response.status_code} - {response.text}")
+        if response.status_code not in [200, 201]:
+            logging.error(f"Failed to trigger DAG: {response.status_code} - {response.text}")
         else:
-            print(f"DAG {DAG_ID} triggered successfully!")
+            logging.info(f"DAG {DAG_ID} triggered successfully!")
     except Exception as e:
-        print(f"Error triggering DAG: {e}")
+        logging.error(f"Error triggering DAG: {e}")
 
 def main():
     while True:
         if is_there_any_unprocessed_data():
-            print("Unprocessed data found, triggering DAG...")
+            logging.info("Unprocessed data found, triggering DAG...")
             trigger_dag()
             time.sleep(CHECK_INTERVAL_AFTER_TRIGGER)
         else:
-            print("No data found.")
+            logging.info("No data found.")
             time.sleep(CHECK_INTERVAL_NO_DATA)
 
 if __name__ == "__main__":
