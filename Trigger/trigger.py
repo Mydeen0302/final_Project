@@ -6,7 +6,7 @@ import logging
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-AIRFLOW_API_BASE = "http://airflow-airflow-webserver-1:8080/api/v1"
+AIRFLOW_API_BASE = "http://airflow-webserver:8080/api/v1"
 DAG_ID = "thirdflow"
 FLASK_TODO_URL = "http://backend:5000/todo"
 USERNAME = "airflow"
