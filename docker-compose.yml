@@ -7,28 +7,21 @@ services:
       - FLASK_ENV=development
       - FLASK_APP=run.py
       - GOOGLE_APPLICATION_CREDENTIALS=/gcp/gcp-key.json   
-   volumes:
-    - /var/lib/jenkins/workspace/Project/gcp/gcp-key.json:/gcp/gcp-key.json:ro
-
-
-
+    volumes:
+      - /var/lib/jenkins/workspace/Project/gcp/gcp-key.json:/gcp/gcp-key.json:ro
   frontend:
     build: ./frontend/frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
-
-
   trigger:
     build: ./Trigger
     depends_on:
       - backend
-
 networks:
   default:
     external:
       name: my-shared-network
-  
 volumes:
   frontend_node_modules:
