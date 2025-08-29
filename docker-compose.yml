@@ -8,7 +8,7 @@ services:
       - FLASK_APP=run.py
       - GOOGLE_APPLICATION_CREDENTIALS=/gcp/gcp-key.json   
     volumes:
-       - ./gcp/gcp-key.json:/gcp/gcp-key.json:ro
+      - ${PWD}/gcp/gcp-key.json:/gcp/gcp-key.json:ro
   frontend:
     build: ./frontend/frontend
     ports:
