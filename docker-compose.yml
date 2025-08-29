@@ -7,8 +7,9 @@ services:
       - FLASK_ENV=development
       - FLASK_APP=run.py
       - GOOGLE_APPLICATION_CREDENTIALS=/gcp/gcp-key.json   
-    volumes:
-      - ./gcp/gcp-key.json:/gcp/gcp-key.json:ro
+   volumes:
+    - /var/lib/jenkins/workspace/Project/gcp/gcp-key.json:/gcp/gcp-key.json:ro
+
 
 
   frontend:
